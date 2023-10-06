@@ -54,5 +54,15 @@ app.post("/save", (req, res) => {
     connection.query(sql_query, (err, result) => {
         if (err) throw err;
         res.send(result);
-    })
-})
+    });
+});
+
+    app.post("/parentForm", (req, res) => {
+        console.log(req.body);
+        const {droppingGuardian, minorName, fromLocation, toLocation, flightNumber, flightDate, departingGuardianAddress, departingGuardianTelephoneNumber, arrivalGuardianAddress, arrivalGuardianName, arrivalGuardianTelephone} = req.body;
+        const sql_query = `INSERT INTO parent_form (droppingGuardian, minorName, fromLocation, toLocation, flightNumber, flightDate, departingGuardianAddress, departingGuardianTelephoneNumber, arrivalGuardianAddress, arrivalGuardianName, arrivalGuardianTelephone) VALUES ("${droppingGuardian}", "${minorName}", "${fromLocation}", "${toLocation}", "${flightNumber}", "${flightDate}", "${departingGuardianAddress}", "${departingGuardianTelephoneNumber}", "${arrivalGuardianAddress}", "${arrivalGuardianName}", "${arrivalGuardianTelephone}")`;
+        connection.query(sql_query, (err, result) => {
+            if (err) throw err;
+            res.send(result);
+        });
+});
